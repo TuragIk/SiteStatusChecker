@@ -1,35 +1,72 @@
-# DevOps Go Assignment: Site Status Checker
+<p align="center">
+  <h1 align="center">Site Status Checker</h1>
+</p>
 
-## Objective
-Build a CLI tool using Go that checks the health status of provided websites. This will teach you about HTTP requests, error handling, and command-line argument parsing in Go.
+<p align="center">
+  <a href="https://go.dev/">
+    <img src="https://img.shields.io/badge/Go-1.25+-00ADD8?style=flat&logo=go&logoColor=white" alt="Go">
+  </a>
+  <a href="https://opensource.org/licenses/MIT">
+    <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License">
+  </a>
+</p>
 
-## Level 1: The Basics (Synchronous)
-1. **Parse Arguments**: Read the list of websites provided as command-line arguments.
-   - *Hint*: Look at the `os` package, specifically `os.Args`.
-2. **Check Status**: For each website, send a GET request.
-   - *Hint*: Use the `net/http` package (`http.Get`).
-3. **Report**: Print the result to the console.
-   - Format: `[UP] http://example.com` (for 200 OK)
-   - Format: `[DOWN] http://example.com` (for errors or non-200 codes)
+<p align="center">
+  <i>
+    Site Status Checker is a lightweight, efficient command-line interface (CLI) tool built to monitor the health and reachability of websites. It leverages Go's standard library to perform HTTP requests and provide immediate status feedback, serving as a foundational project for understanding network operations in Go.
+  </i>
+</p>
 
-## Level 2: Concurrency (The "Go" Way)
-Once Level 1 is working, try to make it faster!
-1. **Goroutines**: Spin up a new goroutine for each website check so they happen at the same time.
-2. **Channels**: Use a channel to communicate the results back to the main function to print them.
+<br>
 
-## Example Usage
-```bash
-go run main.go https://google.com https://github.com https://nonexistent-site.local
-```
+## Features
 
-## Expected Output
+* **URL Health Checks:** Validates the availability of multiple websites in a single execution.
+* **Status Code Analysis:** Distinguishes between successful responses (HTTP 200) and errors/outages.
+* **CLI Arguments:** Accepts a dynamic list of target URLs via command-line arguments.
+* **Robust Error Handling:** Gracefully manages network failures and invalid URLs without crashing.
+
+## Tech Stack
+
+| Component | Technology | Description |
+| :--- | :--- | :--- |
+| **Language** | `Go` (Golang) | Statically typed, compiled language known for efficiency. |
+| **Networking** | `net/http` | Go's robust standard library for HTTP client/server implementations. |
+| **CLI** | `os` | Standard library package for interacting with the operating system and arguments. |
+
+## Quick Start
+
+### Prerequisites
+
+* [Go](https://go.dev/dl/) (Version 1.25 or higher recommended)
+
+### Installation
+
+1.  **Clone the Repository**
+    ```bash
+    git clone https://github.com/TuragIk/SiteStatusChecker.git
+    cd SiteStatusChecker
+    ```
+
+2.  **Run the Application**
+    Execute the tool by passing the URLs you wish to check as arguments:
+    ```bash
+    go run main.go https://google.com https://github.com https://nonexistent-site.local
+    ```
+
+### Expected Output
+
 ```text
 [UP] https://google.com
 [UP] https://github.com
 [DOWN] https://nonexistent-site.local
 ```
 
-## Resources
-- [Go by Example: Command-Line Arguments](https://gobyexample.com/command-line-arguments)
-- [Go by Example: HTTP Clients](https://gobyexample.com/http-clients)
-- [Go by Example: Goroutines](https://gobyexample.com/goroutines)
+## Project Structure
+
+```text
+devops-go-assignment/
+├── main.go            # Application Entry Point & Logic
+├── go.mod             # Module Definition & Dependency Management
+└── README.md          # Project Documentation
+```

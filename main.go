@@ -33,5 +33,4 @@ func main() {
 		}(site)
 	}
 	wg.Wait()
-	fmt.Printf("test")
 }
