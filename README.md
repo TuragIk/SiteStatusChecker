@@ -22,6 +22,8 @@
 ## Features
 
 * **URL Health Checks:** Validates the availability of multiple websites in a single execution.
+* **Worker Pool Concurrency:** Uses a fixed pool of workers to efficiently check multiple sites in parallel.
+* **Latency Reporting:** Displays the response time for each checked URL.
 * **Status Code Analysis:** Distinguishes between successful responses (HTTP 200) and errors/outages.
 * **CLI Arguments:** Accepts a dynamic list of target URLs via command-line arguments.
 * **Robust Error Handling:** Gracefully manages network failures and invalid URLs without crashing.
@@ -57,9 +59,9 @@
 ### Expected Output
 
 ```text
-[UP] https://google.com
-[UP] https://github.com
-[DOWN] https://nonexistent-site.local
+[UP] https://google.com (210ms)
+[UP] https://github.com (95ms)
+[DOWN] https://nonexistent-site.local (5ms)
 ```
 
 ## Project Structure
