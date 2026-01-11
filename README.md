@@ -27,6 +27,9 @@
 * **Status Code Analysis:** Distinguishes between successful responses (HTTP 200) and errors/outages.
 * **CLI Arguments:** Accepts a dynamic list of target URLs via command-line arguments.
 * **Robust Error Handling:** Gracefully manages network failures and invalid URLs without crashing.
+* **File Input:** Supports reading URLs from a CSV file using the `-f` flag.
+* **Piped Input:** Accepts URLs via standard input (stdin) for easy integration with other tools.
+* **Configurable Timeout:** Custom timeout support via the `-t` flag (default: 5s).
 
 ## Tech Stack
 
@@ -34,7 +37,9 @@
 | :--- | :--- | :--- |
 | **Language** | `Go` (Golang) | Statically typed, compiled language known for efficiency. |
 | **Networking** | `net/http` | Go's robust standard library for HTTP client/server implementations. |
-| **CLI** | `os` | Standard library package for interacting with the operating system and arguments. |
+| **Concurrency** | `sync` & `channels` | Worker pools and synchronization for efficient parallel processing. |
+| **CLI & Flags** | `flag`, `os` | Standard library packages for CLI arguments and flag parsing. |
+| **File I/O** | `encoding/csv`, `io` | Robust reading of files and standard input streams. |
 
 ## Quick Start
 
@@ -53,8 +58,30 @@
 2.  **Run the Application**
     Execute the tool by passing the URLs you wish to check as arguments:
     ```bash
-    go run main.go https://google.com https://github.com https://nonexistent-site.local
+    go run main.go https://google.com https://github.com
     ```
+
+### Advanced Usage
+
+**Read from File:**
+```bash
+go run main.go -f sites.csv
+```
+
+**Set Custom Timeout (seconds):**
+```bash
+go run main.go -t 2 https://slow-site.com
+```
+
+**Pipe from Stdin:**
+```bash
+cat sites.txt | go run main.go
+```
+
+**Combine Everything:**
+```bash
+echo "https://example.com" | go run main.go -f sites.csv -t 1 https://google.com
+```
 
 ### Expected Output
 
@@ -67,7 +94,7 @@
 ## Project Structure
 
 ```text
-devops-go-assignment/
+SiteStatusChecker/
 ├── main.go            # Application Entry Point & Logic
 ├── go.mod             # Module Definition & Dependency Management
 └── README.md          # Project Documentation
